@@ -1,0 +1,21 @@
+.PageBackground{
+    background-image: url('../AnimeDetailsBackground.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+}
+.card-img{
+    height:93vh;
+}
+.AnimeTitle{
+    font-weight: bold;
+    font-size: 1.75rem;
+    text-shadow: 2px 2px black;
+    overflow-y: scroll;
+}
+.AnimeText{
+    height:50%;
+    overflow-y: scroll;
+    text-shadow: 2px 2px black;
+}

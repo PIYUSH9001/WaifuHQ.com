@@ -1,0 +1,5 @@
+.AnimeContainer{
+    display: flex;
+    overflow-x: scroll;
+    height:40vh;
+}

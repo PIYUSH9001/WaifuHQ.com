@@ -1,0 +1,14 @@
+.dropdown-item{
+    color:red;
+}
+.dropdown-item:focus{
+    color:black;
+}
+.dropdown-item:active{
+    background-color: black;
+    color:white;
+}
+.nav-item:hover{
+    transition: 0.35s;
+    color:white;
+}
