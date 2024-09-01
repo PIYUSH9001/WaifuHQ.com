@@ -30,14 +30,14 @@ export default function Navbar() {
             Categories
           </Link>
           <ul className="dropdown-menu bg-dark border border-danger rounded p-2 border-2">
-            <li><Link className="dropdown-item text-center rounded" to="/"><b>Shounen</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/"><b>Romance</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/"><b>Isekai</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/"><b>Shoujo</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/"><b>Slice of life</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/"><b>Seinen</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/"><b>Music</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/"><b>Psychological</b></Link></li>
+            <li><Link className="dropdown-item text-center rounded" to="/shounen"><b>Shounen</b></Link></li>
+            <li><Link className="dropdown-item text-center rounded" to="/romance"><b>Romance</b></Link></li>
+            <li><Link className="dropdown-item text-center rounded" to="/shoujo"><b>Shoujo</b></Link></li>
+            <li><Link className="dropdown-item text-center rounded" to="/sol"><b>Slice of life</b></Link></li>
+            <li><Link className="dropdown-item text-center rounded" to="/isekai"><b>Isekai</b></Link></li>
+            <li><Link className="dropdown-item text-center rounded" to="/seinen"><b>Comedy</b></Link></li>
+            <li><Link className="dropdown-item text-center rounded" to="/psychology"><b>Psychological</b></Link></li>
+            <li><Link className="dropdown-item text-center rounded" to="/music"><b>Music</b></Link></li>
             {/* <li><hr className="dropdown-divider"/></li>
             <li><a className="dropdown-item" to="/">Something else here</a></li> */}
           </ul>

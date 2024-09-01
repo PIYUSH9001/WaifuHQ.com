@@ -7,11 +7,14 @@ import AnimeTrailerPage from './components/AnimeTrailerPage'
 import AnimeList from './components/AnimeList'
 export default function App() {
     const GenreList = {
-      'Romance':'22',
-      'Shounen':'27',
-      'Isekai':'62',
-      'Shoujo':'25',
-      'sol':'36',
+      Romance:'22',
+      Shounen:'27',
+      Isekai:'62',
+      Shoujo:'25',
+      sol:'36',
+      comedy:'4',
+      psychology:'40',
+      music:'19'
     }
   return (
     <BrowserRouter>
@@ -23,7 +26,7 @@ export default function App() {
         {Object.keys(GenreList).map((genre) => (
           <Route
             key={genre}
-            path={`/${genre.toLowerCase()}`}
+            exact path={`/${genre.toLowerCase()}`}
             element={<AnimeList Genre={GenreList[genre]} Pageno={'1'} />}
           />
         ))}
