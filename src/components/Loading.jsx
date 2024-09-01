@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function Loading() {
+export default function Loading(props) {
     return (
         <div className='loader' style={
                 {
+                height:props.FullPage?'100vh':'auto',
                 flexGrow:'1',
                 width:'auto',
                 display:'flex',

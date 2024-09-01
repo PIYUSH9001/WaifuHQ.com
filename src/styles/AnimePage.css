@@ -3,7 +3,7 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
-    height:100vh;
+    height:auto;
 }
 .card-img{
     height:93vh;
@@ -16,6 +16,7 @@
 }
 .AnimeText{
     height:50%;
+    font-size: 1.25rem;
     overflow-y: scroll;
     text-shadow: 2px 2px black;
 }

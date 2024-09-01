@@ -15,9 +15,13 @@ export default function HomePage() {
     },[])
   return (
     <div className='AnimePage container-fluid m-0 p-0'>
+        {AnimeData?
+        <>
         <Navbar/>
-        {AnimeData?<TrendingShows Title={"Trending shows"}/>:<Loading/>}
-        
+        <TrendingShows Title={"Currently airing"} Parameter="airing"/>
+        <TrendingShows Title={"Upcoming shows"} Parameter="upcoming"/>
+        </>
+        :<Loading FullPage='true'/>}
     </div>
   )
 }
