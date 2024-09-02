@@ -46,7 +46,7 @@ export default function AnimePage() {
                             <h5 className="card-title AnimeTitle p-1">{AnimeDataByID.title_english}</h5>
                             <p className="card-text AnimeText p-1 m-1">{AnimeDataByID.synopsis}</p>
                             <Link to={`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`}>
-                                <button type="button" className="btn btn-light my-3 btn-lg">Watch trailer</button>
+                                <button type="button" className="btn btn-light my-3 btn-lg w-50">Watch trailer</button>
                             </Link>
                         </div>
                     </div>

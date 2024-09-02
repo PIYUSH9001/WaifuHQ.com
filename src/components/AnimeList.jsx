@@ -35,7 +35,7 @@ export default function AnimeList(props) {
         {
           AnimeData ? (
             <>
-              <h2 className='text-center text-light'>{CapitalizeWord(props.Title)}</h2>
+              <h2 className='text-center text-light ListHeading p-2'>{CapitalizeWord(props.Title)}</h2>
               {AnimeData.map((element) => (
                 <div className='col-6 mb-3' key={element.mal_id}>
                   <ShowItem AnimeImageURL={element.images.jpg.large_image_url} AnimeTitle={element.title} AnimeID={element.mal_id} />

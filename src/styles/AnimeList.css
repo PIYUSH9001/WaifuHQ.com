@@ -5,8 +5,12 @@
     overflow: hidden;
 }
 
+/* .ListHeading{
+    border-bottom: 2px solid white;
+} */
+
 .PaginationContainer{
-    height:7vh;
+    height:5rem;
     width: 100vw;
     display: flex;
     align-items: center;
