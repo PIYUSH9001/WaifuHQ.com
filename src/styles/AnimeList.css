@@ -4,3 +4,17 @@
     background-size:contain;
     overflow: hidden;
 }
+
+.PaginationContainer{
+    height:7vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-top: 2px solid white;
+}
+
+.btn{
+    width: 35%;
+}

@@ -35,7 +35,7 @@ export default function Navbar() {
             <li><Link className="dropdown-item text-center rounded" to="/shoujo"><b>Shoujo</b></Link></li>
             <li><Link className="dropdown-item text-center rounded" to="/sol"><b>Slice of life</b></Link></li>
             <li><Link className="dropdown-item text-center rounded" to="/isekai"><b>Isekai</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/seinen"><b>Comedy</b></Link></li>
+            <li><Link className="dropdown-item text-center rounded" to="/comedy"><b>Comedy</b></Link></li>
             <li><Link className="dropdown-item text-center rounded" to="/psychology"><b>Psychological</b></Link></li>
             <li><Link className="dropdown-item text-center rounded" to="/music"><b>Music</b></Link></li>
             {/* <li><hr className="dropdown-divider"/></li>

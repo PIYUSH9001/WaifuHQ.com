@@ -27,7 +27,7 @@ export default function App() {
           <Route
             key={genre}
             exact path={`/${genre.toLowerCase()}`}
-            element={<AnimeList Genre={GenreList[genre]} Pageno={'1'} />}
+            element={<AnimeList Genre={GenreList[genre]} Title={genre + ' ' + 'Anime'}/>}
           />
         ))}
       </Routes>
