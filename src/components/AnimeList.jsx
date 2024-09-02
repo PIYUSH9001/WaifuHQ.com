@@ -42,13 +42,13 @@ export default function AnimeList(props) {
                 </div>
               ))}
               <div className='PaginationContainer container m-0 p-3'>
-              <button type="button" className="btn btn-light btn-lg" disabled={Pageno <= 1} onClick={()=>{
+              <button type="button" className="btn btn-light btn-lg PaginationBtn" disabled={Pageno <= 1} onClick={()=>{
                   if(Pageno > 1){
                     setPageno(Pageno - 1);
                   }
               }}>Previous</button>
               <h3 className='text-light'>{Pageno}</h3>
-              <button type="button" className="btn btn-success btn-lg" disabled={Pageno === PaginationDetails.last_visible_page} onClick={()=>{
+              <button type="button" className="btn btn-success btn-lg PaginationBtn" disabled={Pageno === PaginationDetails.last_visible_page} onClick={()=>{
                   if(Pageno < PaginationDetails.last_visible_page){
                     setPageno(Pageno + 1);
                   }
