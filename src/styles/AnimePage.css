@@ -3,10 +3,12 @@
     background-size: contain;
     display: flex;
     flex-direction: column;
-    height:auto;
+    /* height:auto; */
 }
 .AnimeTitle{
     font-size: 2rem;
+    height:5rem;
+    overflow-y: scroll;
 }
 .AnimeText{
     height:8rem;

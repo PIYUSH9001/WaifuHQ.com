@@ -37,9 +37,9 @@ export default function TrendingShows(props) {
   useEffect(()=>{
     FetchData(props.Parameter);
   },[])
-  useEffect(()=>{
-    console.log(AnimeData);
-  },[AnimeData])
+  // useEffect(()=>{
+  //   console.log(AnimeData);
+  // },[AnimeData])
   return (
     <div className='container m-0 p-1'>
       <h3 className='TrendingHeading text-light p-1 m-1 text-center'>{props.Title}</h3>

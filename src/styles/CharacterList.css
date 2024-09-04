@@ -12,16 +12,26 @@
     justify-content: space-between;
 }
 .CharacterDP{
-    border-radius: 50%;
-    height:5rem;
-    width: 5rem;
+    /* border-radius: 50%; */
+    height:6rem;
+    width: 6rem;
 }
 .CharacterName{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height:5rem;
     width: 6rem;
-    overflow: scroll;
+    overflow-y: scroll;
     font-size: 0.9rem;
+    word-wrap:break-word;
+}
+.CharacterRole{
+    font-size: 0.6rem;
+    color:gray;
+}
+.CollapseBtn{
+    height:3rem;
+    width: 3rem;
 }
