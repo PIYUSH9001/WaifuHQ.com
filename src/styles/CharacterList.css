@@ -1,0 +1,27 @@
+.CharacterList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.CharacterCard{
+    height:7.5rem;
+    width:12rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.CharacterDP{
+    border-radius: 50%;
+    height:5rem;
+    width: 5rem;
+}
+.CharacterName{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:5rem;
+    width: 6rem;
+    overflow: scroll;
+    font-size: 0.9rem;
+}

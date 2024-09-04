@@ -5,15 +5,7 @@ const AnimeContext = createContext();
 const AnimeProvider = ({children}) =>{
     const [AnimeData,setAnimeData] = useState(null);
     
-    const SetData = async (params) => {
-        let url;
-        switch (params) {
-            case 'upcoming':
-                url = 'https://api.jikan.moe/v4/top/anime?filter=upcoming';
-                break;
-            default:
-                break;
-        }
+    const SetData = async () => {
         try {
             let res = await fetch(`https://api.jikan.moe/v4/top/anime?filter=airing`);
             if (!res.ok) {

@@ -8,6 +8,7 @@ import Loading from './Loading'
 import TrendingShows from './TrendingShows'
 import DashBoard from './DashBoard';
 import { Link } from 'react-router-dom';
+import CharacterList from './CharacterList'
 export default function AnimePage() {
     const { AnimeID } = useParams();
     const [AnimeDataByID, setAnimeDataByID] = useState(null);
@@ -36,7 +37,7 @@ export default function AnimePage() {
             {
                 AnimeDataByID ? <>
                     <Navbar />
-                    <div className="card border-0 rounded-0" >
+                    {/* <div className="card border-0 rounded-0" >
                         <img src={AnimeDataByID.images.jpg.large_image_url} className="card-img rounded-0" alt="..." />
                         <div className="card-img-overlay p-3 text-center rounded-0" style={{
                             background: 'linear-gradient( rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 20%)',
@@ -49,7 +50,24 @@ export default function AnimePage() {
                                 <button type="button" className="btn btn-light my-3 btn-lg w-50">Watch trailer</button>
                             </Link>
                         </div>
+                    </div> */}
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-5 d-flex align-items-center">
+                                <img src={AnimeDataByID.images.jpg.large_image_url} class="img-fluid AnimeIMG w-100 rounded m-1" alt="..." />
+                            </div>
+                            <div class="col-7">
+                                <div class="card-body">
+                                    <h5 class="AnimeTitle text-center">{AnimeDataByID.title_english}</h5>
+                                    <p class="AnimeText text-center">{AnimeDataByID.synopsis}</p>
+                                    <Link to={`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`}>
+                                        <button type="button" className="btn btn-light m-1 btn-lg w-100">Watch trailer</button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <CharacterList AnimeID={AnimeDataByID.mal_id}/>
                 </>
                     :
                     <Loading FullPage='true' />
