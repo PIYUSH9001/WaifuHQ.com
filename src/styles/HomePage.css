@@ -1,5 +1,5 @@
 .AnimePage{
-    background-image: url('../AnimeDetailsBackground.jpg');
+    background-image: url('../images/AnimeDetailsBackground.jpg');
     background-size:cover;
     height:57.5rem;
     display: flex;

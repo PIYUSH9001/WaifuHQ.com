@@ -1,5 +1,5 @@
 .PageBackground{
-    background-image: url('../AnimeDetailsBackground.jpg');
+    background-image: url('../images/AnimeDetailsBackground.jpg');
     background-size: contain;
     display: flex;
     flex-direction: column;

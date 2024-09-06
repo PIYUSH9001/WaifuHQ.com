@@ -3,15 +3,25 @@ import '../styles/AnimeList.css'
 import ShowItem from './ShowItem';
 import Navbar from './Navbar';
 import Loading from './Loading';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { AnimeContext } from '../context';
-export default function AnimeList(props) {
+export default function AnimeList({Genre =  null,Title,Search = null,Popular = null}) {
   const [Pageno,setPageno] = useState(1);
   const [AnimeData, setAnimeData] = useState(null);
+  const {SearchInput} = useParams();
   const [PaginationDetails,setPaginationDetails] = useState(null);
   const URLLocation = useLocation();
   const FetchData = async () => {
-    let res = await fetch(`https://api.jikan.moe/v4/anime?genres=${props.Genre}&order_by=popularity&page=${Pageno}&limit=20`);
+    let res;
+    if(Genre){
+      res = await fetch(`https://api.jikan.moe/v4/anime?genres=${Genre}&order_by=popularity&page=${Pageno}&limit=20`);
+    }
+    else if(Popular){
+      res = await fetch(`https://api.jikan.moe/v4/top/anime?page=${Pageno}&limit=20`);
+    }
+    else if(Search){
+        res = await fetch(`https://api.jikan.moe/v4/anime?q=${SearchInput}&page=${Pageno}&limit=20`)
+    }
     let parsedData = await res.json();
     setAnimeData(parsedData.data);
     setPaginationDetails(parsedData.pagination)
@@ -35,7 +45,7 @@ export default function AnimeList(props) {
         {
           AnimeData ? (
             <>
-              <h2 className='text-center text-light ListHeading p-2'>{CapitalizeWord(props.Title)}</h2>
+              <h2 className='text-center text-light ListHeading p-2'>{CapitalizeWord(Title)}</h2>
               {AnimeData.map((element) => (
                 <div className='col-6 mb-3' key={element.mal_id}>
                   <ShowItem AnimeImageURL={element.images.jpg.large_image_url} AnimeTitle={element.title} AnimeID={element.mal_id} />

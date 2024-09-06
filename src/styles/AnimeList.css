@@ -1,6 +1,6 @@
 .AnimeListContainer{
     width: 100vw;
-    background-image: url('../AnimeDetailsBackground.jpg');
+    background-image: url('../images/AnimeDetailsBackground.jpg');
     background-size:contain;
     overflow: hidden;
 }

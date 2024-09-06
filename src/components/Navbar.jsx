@@ -1,8 +1,13 @@
-import React from 'react'
-import Loli from '../LoliIcon.png';
+import React, { useContext } from 'react'
+import Loli from '../images/LoliIcon.png';
 import '../styles/navbar.css';
 import { Link } from 'react-router-dom';
+import { AnimeContext } from '../context';
 export default function Navbar() {
+  const {SearchInput,setSearchInput} = useContext(AnimeContext);
+  const handleInputChange = (event)=>{
+      setSearchInput(event.target.value)
+  }
   return (
     <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
   <div className="container-fluid">
@@ -23,7 +28,7 @@ export default function Navbar() {
           <Link className="nav-link active text-danger" aria-current="page" to="/">Home</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link text-danger" to="/">Popular</Link>
+          <Link className="nav-link text-danger" to="/anime/popular">Popular</Link>
         </li>
         <li className="nav-item dropdown">
           <Link className="nav-link dropdown-toggle text-danger" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,8 +49,12 @@ export default function Navbar() {
         </li>
       </ul>
       <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-light" type="submit">Search</button>
+        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={handleInputChange} value={SearchInput}/>
+        <Link to={`/search/${SearchInput}`}>
+        <button className="btn btn-outline-light" type="submit" onClick={()=>{
+          setSearchInput('');
+        }}>Search</button>
+        </Link>
       </form>
     </div>
   </div>

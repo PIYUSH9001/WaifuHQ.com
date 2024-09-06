@@ -6,32 +6,35 @@ import { AnimeContext } from './context'
 import AnimeTrailerPage from './components/AnimeTrailerPage'
 import AnimeList from './components/AnimeList'
 export default function App() {
-    const GenreList = {
-      Romance:'22',
-      Shounen:'27',
-      Isekai:'62',
-      Shoujo:'25',
-      sol:'36',
-      comedy:'4',
-      psychology:'40',
-      music:'19'
-    }
+  const GenreList = {
+    Romance: '22',
+    Shounen: '27',
+    Isekai: '62',
+    Shoujo: '25',
+    sol: '36',
+    comedy: '4',
+    psychology: '40',
+    music: '19'
+  }
   return (
     <BrowserRouter>
-    <>
-      <Routes>
-        <Route path='/' element={<HomePage/>}/>
-        <Route path='/anime/:AnimeID' element={<AnimePage/>}/>
-        <Route path='/anime/:AnimeID/:AnimeTrailer' element={<AnimeTrailerPage/>}/>
-        {Object.keys(GenreList).map((genre) => (
-          <Route
-            key={genre}
-            exact path={`/${genre.toLowerCase()}`}
-            element={<AnimeList Genre={GenreList[genre]} Title={genre + ' ' + 'Anime'}/>}
-          />
-        ))}
-      </Routes>
-    </>
+      <>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/anime/:AnimeID' element={<AnimePage />} />
+          <Route path='/anime/:AnimeID/:AnimeTrailer' element={<AnimeTrailerPage />} />
+          <Route path='/anime/popular' element={<AnimeList Popular={true} Title={'Popular anime'} />} />
+          <Route path='/search/:SearchInput' element={<AnimeList Title={'Search results'} Search={true} />} />
+
+          {Object.keys(GenreList).map((genre) => (
+            <Route
+              key={genre}
+              exact path={`/${genre.toLowerCase()}`}
+              element={<AnimeList Genre={GenreList[genre]} Title={genre + ' ' + 'Anime'} />}
+            />
+          ))}
+        </Routes>
+      </>
     </BrowserRouter>
   )
 }

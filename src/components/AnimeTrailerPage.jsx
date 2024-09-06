@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/AnimePageTrailer.css';
+import '../styles/AnimeTrailerPage.css';
 import { useParams } from 'react-router-dom';
 import DashBoard from './DashBoard';
 import Navbar from './Navbar';

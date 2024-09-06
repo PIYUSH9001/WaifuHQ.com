@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import loli from '../LoliIcon.png'
+// import loli from '../LoliIcon.png'
 import '../styles/AnimePage.css'
 import Navbar from './Navbar'
 import { AnimeContext } from '../context'
@@ -51,15 +51,15 @@ export default function AnimePage() {
                             </Link>
                         </div>
                     </div> */}
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-5 d-flex align-items-center">
-                                <img src={AnimeDataByID.images.jpg.large_image_url} class="img-fluid AnimeIMG w-100 rounded m-1" alt="..." />
+                    <div className="card mb-3">
+                        <div className="row g-0">
+                            <div className="col-5 d-flex align-items-center">
+                                <img src={AnimeDataByID.images.jpg.large_image_url} className="img-fluid AnimeIMG w-100 rounded m-1" alt="..." />
                             </div>
-                            <div class="col-7">
-                                <div class="card-body">
-                                    <h5 class="AnimeTitle text-center">{AnimeDataByID.title_english}</h5>
-                                    <p class="AnimeText text-center">{AnimeDataByID.synopsis}</p>
+                            <div className="col-7">
+                                <div className="card-body">
+                                    <h5 className="AnimeTitle text-center">{AnimeDataByID.title_english || AnimeDataByID.title}</h5>
+                                    <p className="AnimeText text-center p-1">{AnimeDataByID.synopsis}</p>
                                     <Link to={`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`}>
                                         <button type="button" className="btn btn-light m-1 btn-lg w-100">Watch trailer</button>
                                     </Link>

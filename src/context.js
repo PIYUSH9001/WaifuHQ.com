@@ -4,7 +4,7 @@ const AnimeContext = createContext();
 
 const AnimeProvider = ({children}) =>{
     const [AnimeData,setAnimeData] = useState(null);
-    
+    const [SearchInput,setSearchInput] = useState('');
     const SetData = async () => {
         try {
             let res = await fetch(`https://api.jikan.moe/v4/top/anime?filter=airing`);
@@ -24,6 +24,8 @@ const AnimeProvider = ({children}) =>{
                 AnimeData,
                 setAnimeData,
                 SetData,
+                SearchInput,
+                setSearchInput,
             }
             }>
             {children}
