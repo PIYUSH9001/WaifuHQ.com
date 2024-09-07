@@ -9,6 +9,7 @@ import TrendingShows from './TrendingShows'
 import DashBoard from './DashBoard';
 import { Link } from 'react-router-dom';
 import CharacterList from './CharacterList'
+import Footer from './Footer'
 export default function AnimePage() {
     const { AnimeID } = useParams();
     const [AnimeDataByID, setAnimeDataByID] = useState(null);
@@ -68,6 +69,8 @@ export default function AnimePage() {
                         </div>
                     </div>
                     <CharacterList AnimeID={AnimeDataByID.mal_id}/>
+                    <TrendingShows AnimeID={AnimeDataByID.mal_id} Parameter={'anime-recommended'} Title={'More shows like this'}/>
+                    <Footer/>
                 </>
                     :
                     <Loading FullPage='true' />

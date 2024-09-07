@@ -3,6 +3,7 @@ import '../styles/CharacterList.css'
 import Loading from './Loading';
 import MinimizeIcon from '../images/MinimizeIcon.png';
 import { Link } from 'react-router-dom';
+import CharacterCard from './CharacterCard';
 export default function CharacterList(props) {
     const [CharacterData, setCharacterData] = useState(null);
     const [ShowCharacterProperties, setShowCharacterProperties] = useState({
@@ -20,7 +21,7 @@ export default function CharacterList(props) {
         return () => {
             setCharacterData(null);
         }
-    }, [])
+    }, [props.AnimeID])
     return (
         <>
             <div className='container w-100 text-center p-2 d-flex align-items-center justify-content-center'>
@@ -50,15 +51,13 @@ export default function CharacterList(props) {
                 {CharacterData ? CharacterData.map((element) => {
                     return (
                         <>
-                            <div className="CharacterCard rounded card p-1 m-1 border border-light border-2" style={{ position: 'relative' }}>
-                                <a href={element.character.url} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
-                                </a>
-                                <img src={element.character.images.jpg.image_url} alt="" className='CharacterDP rounded-circle' />
-                                <p className='CharacterName m-1 text-center'>
-                                    {element.character.name}
-                                    <small className='CharacterRole font-weight-bold'>({element.role})</small>
-                                </p>
-                            </div>
+                            <CharacterCard CharacterInfo={{
+                                CharacterID:element.character.mal_id,
+                                CharacterName:element.character.name,
+                                CharacterIMG:element.character.images.jpg.image_url,
+                                CharacterRole:element.role,
+                                CharacterURL:element.character.url
+                            }}/>
                         </>
                     )
                 })

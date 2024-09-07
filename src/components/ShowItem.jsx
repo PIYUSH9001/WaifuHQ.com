@@ -19,9 +19,8 @@ export default function ShowItem(props) {
                                 <h5 className="card-title p-1 text-center d-flex align-items-center justify-content-center placeholder-glow flex-column" style={{height:'100%',}}>
                                     {
                                     IsLoaded?(props.AnimeTitle.length > 35)?`${props.AnimeTitle.slice(0,35)}...`:`${props.AnimeTitle.slice(0,35)}`:(<>
-                                    <span className="placeholder w-100 my-2"></span>
-                                    <span className="placeholder w-50 my-2"></span>
-                                    
+                                    <span className="placeholder w-100 my-2 rounded"></span>
+                                    <span className="placeholder w-50 my-2 rounded"></span>
                                     </>)
                                     
                                 }

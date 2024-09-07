@@ -47,10 +47,10 @@ export default function TrendingShows(props) {
       {AnimeData ? AnimeData.map((element) => {
           const animeProps = {
             AnimeImageURL: props.Parameter === 'anime-recommended'? element.entry.images.jpg.large_image_url:element.images.jpg.large_image_url,
-            AnimeTitle:props.Parameter === 'anime-recommended'? element.entry.title_english:element.title,
+            AnimeTitle:props.Parameter === 'anime-recommended'? element.entry.title:element.title,
             AnimeID: props.Parameter === 'anime-recommended'? element.entry.mal_id:element.mal_id,
           };
-          return <ShowItem key={element.mal_id} {...animeProps} />;
+          return <ShowItem key={element.mal_id} {...animeProps}/>;
         }) : <Loading/>}
       </div>
     </div>
