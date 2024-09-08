@@ -25,24 +25,24 @@ export default function Navbar() {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <Link className="nav-link active text-danger" aria-current="page" to="/">Home</Link>
+          <Link className="nav-link active text-light" aria-current="page" to="/">Home</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link text-danger" to="/anime/popular">Popular</Link>
+          <Link className="nav-link text-light" to="/anime/popular">Popular</Link>
         </li>
         <li className="nav-item dropdown">
-          <Link className="nav-link dropdown-toggle text-danger" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <Link className="nav-link dropdown-toggle text-light" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Categories
           </Link>
-          <ul className="dropdown-menu bg-dark border border-danger rounded p-2 border-2">
-            <li><Link className="dropdown-item text-center rounded" to="/shounen"><b>Shounen</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/romance"><b>Romance</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/shoujo"><b>Shoujo</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/sol"><b>Slice of life</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/isekai"><b>Isekai</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/comedy"><b>Comedy</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/psychology"><b>Psychological</b></Link></li>
-            <li><Link className="dropdown-item text-center rounded" to="/music"><b>Music</b></Link></li>
+          <ul className="dropdown-menu bg-dark border border-light border-2 rounded p-2">
+            <li><Link className="dropdown-item text-center text-light rounded" to="/shounen"><b>Shounen</b></Link></li>
+            <li><Link className="dropdown-item text-center text-light rounded" to="/romance"><b>Romance</b></Link></li>
+            <li><Link className="dropdown-item text-center text-light rounded" to="/shoujo"><b>Shoujo</b></Link></li>
+            <li><Link className="dropdown-item text-center text-light rounded" to="/sol"><b>Slice of life</b></Link></li>
+            <li><Link className="dropdown-item text-center text-light rounded" to="/isekai"><b>Isekai</b></Link></li>
+            <li><Link className="dropdown-item text-center text-light rounded" to="/comedy"><b>Comedy</b></Link></li>
+            <li><Link className="dropdown-item text-center text-light rounded" to="/psychology"><b>Psychological</b></Link></li>
+            <li><Link className="dropdown-item text-center text-light rounded" to="/music"><b>Music</b></Link></li>
             {/* <li><hr className="dropdown-divider"/></li>
             <li><a className="dropdown-item" to="/">Something else here</a></li> */}
           </ul>
@@ -51,7 +51,7 @@ export default function Navbar() {
       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={handleInputChange} value={SearchInput}/>
         <Link to={`/search/${SearchInput}`}>
-        <button className="btn btn-outline-light" type="submit" onClick={()=>{
+        <button className="btn btn-outline-light border-2" type="submit" onClick={()=>{
           setSearchInput('');
         }}>Search</button>
         </Link>

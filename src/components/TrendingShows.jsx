@@ -38,20 +38,22 @@ export default function TrendingShows(props) {
     FetchData(props.Parameter);
   },[])
   // useEffect(()=>{
-  //   console.log(AnimeData);
+  //   console.log(AnimeData.length);
   // },[AnimeData])
   return (
     <div className='container m-0 p-1'>
       <h3 className='TrendingHeading text-light p-1 m-1 text-center'>{props.Title}</h3>
       <div className='AnimeContainer m-1 p-1 '>
-      {AnimeData ? AnimeData.map((element) => {
+      {AnimeData ? AnimeData.length !== 0 ? AnimeData.map((element) => {
           const animeProps = {
             AnimeImageURL: props.Parameter === 'anime-recommended'? element.entry.images.jpg.large_image_url:element.images.jpg.large_image_url,
             AnimeTitle:props.Parameter === 'anime-recommended'? element.entry.title:element.title,
             AnimeID: props.Parameter === 'anime-recommended'? element.entry.mal_id:element.mal_id,
           };
           return <ShowItem key={element.mal_id} {...animeProps}/>;
-        }) : <Loading/>}
+        }) : <div className='container p-1 m-1 d-flex align-items-center justify-content-center'>
+          <h3 className='text-center text-light'>Sorry,we currently don't have the data for this show</h3>
+        </div> : <Loading/>}
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import '../styles/AnimePage.css'
 import Navbar from './Navbar'
 import { AnimeContext } from '../context'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import Loading from './Loading'
 import TrendingShows from './TrendingShows'
 import DashBoard from './DashBoard';
@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import CharacterList from './CharacterList'
 import Footer from './Footer'
 export default function AnimePage() {
+    const location = useLocation();
     const { AnimeID } = useParams();
     const [AnimeDataByID, setAnimeDataByID] = useState(null);
     const getAnimeDataByID = async () => {
@@ -32,7 +33,7 @@ export default function AnimePage() {
         return () => {
             setAnimeDataByID(null);
         }
-    }, []);
+    }, [location]);
     return (
         <div className='container-fluid p-0 m-0 rounded-0 PageBackground'>
             {
