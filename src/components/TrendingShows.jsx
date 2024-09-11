@@ -49,6 +49,8 @@ export default function TrendingShows(props) {
             AnimeImageURL: props.Parameter === 'anime-recommended'? element.entry.images.jpg.large_image_url:element.images.jpg.large_image_url,
             AnimeTitle:props.Parameter === 'anime-recommended'? element.entry.title:element.title,
             AnimeID: props.Parameter === 'anime-recommended'? element.entry.mal_id:element.mal_id,
+            EpisodeCount:element.episodes,
+            Synopsis:element.synopsis,
           };
           return <ShowItem key={element.mal_id} {...animeProps}/>;
         }) : <div className='container p-1 m-1 d-flex align-items-center justify-content-center'>

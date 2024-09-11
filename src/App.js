@@ -6,6 +6,7 @@ import { AnimeContext } from './context'
 import AnimeTrailerPage from './components/AnimeTrailerPage'
 import AnimeList from './components/AnimeList'
 export default function App() {
+  // VERY USEFUL LINK - https://api.animethemes.moe/video/swordartonline-OP1.webm
   const GenreList = {
     Romance: '22',
     Shounen: '27',

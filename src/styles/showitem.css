@@ -1,8 +1,8 @@
-.show-item:hover{
+/* .show-item:hover{
     cursor: pointer;
     transition: 0.35s;
     opacity: 0.5;
-}
+} */
 .card{
     background-color: rgb(0, 0, 0);
     color:white;

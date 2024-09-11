@@ -14,9 +14,6 @@ export default function HomePage() {
         setAnimeData(null);
       }
     },[])
-    useEffect(()=>{
-      console.log(DeviceType)
-    },[DeviceType])
   return (
     <div className='AnimePage container-fluid m-0 p-0'>
         {AnimeData?
