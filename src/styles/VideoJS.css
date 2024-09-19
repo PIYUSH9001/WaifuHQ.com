@@ -1,0 +1,14 @@
+.vjs-remaining-time-display{
+    font-size: 0.85rem;
+    text-shadow: 1px 1px black;
+}
+.vjs-theme-forest .vjs-play-control .vjs-icon-placeholder:before{
+    height:1.75rem;
+    width: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    /* margin: none;
+    margin-bottom: 1rem */
+}

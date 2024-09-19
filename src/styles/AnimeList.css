@@ -2,7 +2,7 @@
     width: 100vw;
     background-image: url('../images/AnimeDetailsBackground.jpg');
     background-size:contain;
-    overflow: hidden;
+    overflow-x: scroll;
 }
 
 /* .ListHeading{
@@ -21,4 +21,11 @@
 
 .PaginationBtn{
     width: 35%;
+}
+
+@media (min-width:1024px) {
+    .PaginationContainer{
+        border:2px solid white;
+        border-radius: 1rem;
+    }
 }

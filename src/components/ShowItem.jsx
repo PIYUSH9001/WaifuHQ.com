@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import '../styles/showitem.css'
 import { Link } from 'react-router-dom';
 import AlternativeImage from '../images/alternativeImage.jpg'
@@ -7,6 +7,7 @@ export default function ShowItem(props) {
     const [IsLoaded, setIsLoaded] = useState(false);
     const [IsHovered, setIsHovered] = useState(false);
     const { DeviceType } = useContext(AnimeContext);
+    const ItemRef = useRef(null);
     return (
         <>
             {
@@ -36,13 +37,32 @@ export default function ShowItem(props) {
                         </div>
                     </Link>
                     :
-                    <Link to={`/anime/${props.AnimeID}`}>
+                    <Link to={`/anime/${props.AnimeID}`} ref={ItemRef}>
                         <div className="card rounded m-2 border-2 border-light d-flex flex-row" style={{
-                            height: '16rem', width: IsHovered?'20rem':'10rem', backgroundSize: 'cover', transition: '0.5s', zIndex: IsHovered? '1':'0', transform: IsHovered ? 'scale(1.05)' : 'scale(1)',
+                            height: '16rem', width: IsHovered ? '20rem' : '10rem', backgroundSize: 'cover', transition: '0.5s',
+                            backgroundImage: props.Thumbnail && `url(${AlternativeImage}`, 
+                            zIndex: IsHovered ? '1' : '0', transform: IsHovered ? 'scale(1.05)' : 'scale(1)',
+                            boxSizing: 'border-box',
                             transformOrigin: 'top center',
                         }}
                             onMouseOver={() => {
-                                setIsHovered(true);
+                                props.ShowEffect?
+                                setIsHovered(true):setIsHovered(false);
+                                const ItemRect = ItemRef.current.getBoundingClientRect();
+                                const ContainerRect = ItemRef.current.parentNode.getBoundingClientRect();
+                                //the problem is it runs smoothly after card body
+                                if (ItemRect.left < ContainerRect.left) {
+                                    ItemRef.current.parentNode.scrollBy({
+                                        left: ItemRect.left - ContainerRect.left,
+                                        behavior: 'smooth',
+                                    });
+                                }
+                                else if (ItemRect.right >= ContainerRect.right) {
+                                        ItemRef.current.parentNode.scrollBy({
+                                            left: ItemRect.right - ContainerRect.right,
+                                            behavior: 'smooth',
+                                        });
+                                }
                             }}
                             onMouseOut={() => {
                                 setIsHovered(false)
@@ -56,7 +76,7 @@ export default function ShowItem(props) {
                                     setIsLoaded(true);
                                 }}
                             />
-                            <span class="badge badge-info rounded-50" style={{ position: 'absolute', top: '0.5rem', left: '0.5rem', backgroundColor: 'rgba(0,0,0,0.75)', transition: '0.25s', visibility: IsHovered ? 'visible' : 'hidden', opacity: IsHovered ? '1' : '0', }}>{`${props.EpisodeCount != null ? props.EpisodeCount + ' ' + 'EP' : ''}`}</span>
+                            <span className="badge badge-info rounded-50" style={{ position: 'absolute', top: '0.5rem', left: '0.5rem', backgroundColor: 'rgba(0,0,0,0.75)', transition: '0.25s', visibility: IsHovered ? 'visible' : 'hidden', opacity: IsHovered ? '1' : '0', }}>{`${props.EpisodeCount != null ? props.EpisodeCount + ' ' + 'EP' : ''}`}</span>
                             <div className="card-img-overlay p-1 text-center" style={{
                                 background: 'linear-gradient( rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 20%)',
                                 height: '6.5rem',
@@ -81,15 +101,15 @@ export default function ShowItem(props) {
                                 visibility: IsHovered ? 'visible' : 'hidden',
                                 opacity: IsHovered ? '1' : '0',
                             }}>
-                                <h3 className='p-1 text-center d-flex align-items-center justify-content-center' style={{
+                                <h3 className='p-0 text-center' style={{
                                     height: '3rem',
                                     width: '9.5rem',
                                     fontSize: '1.2rem'
-                                }}>{(props.AnimeTitle.length > 25) ? `${props.AnimeTitle.slice(0, 25)}...` : `${props.AnimeTitle.slice(0, 25)}`}</h3>
-                                <p className='p-1 text-center' style={{ height: '8rem', width: '100%', overflowX: 'scroll' }}>
+                                }}>{(props.AnimeTitle.length > 20) ? `${props.AnimeTitle.slice(0, 20)}...` : `${props.AnimeTitle.slice(0, 20)}`}</h3>
+                                <p className='p-1 text-center' style={{ height: '8rem', width: '100%', overflowX: 'scroll', fontSize: '0.9rem' }}>
                                     {props.Synopsis}
                                 </p>
-                                <button type="button" class="btn btn-outline-light">Watch now</button>
+                                <button type="button" className="btn btn-outline-light ">Watch now</button>
                             </div>
                         </div>
                     </Link>
