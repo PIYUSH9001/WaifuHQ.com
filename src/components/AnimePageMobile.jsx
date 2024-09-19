@@ -111,7 +111,7 @@ export default function AnimePage() {
                                             <Link to={`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`}>
                                                 <button type="button" className="btn btn-light m-1 btn-lg w-100">Watch trailer</button>
                                             </Link>
-                                            <button type="button" class="btn btn-outline-primary w-25 mx-auto btn-lg text-light" onClick={()=>navigate(`/anime/${AnimeDataByID.mal_id}/opening`)}>Watch opening</button>
+                                            <button type="button" class="button" className="btn btn-success m-1 btn-lg w-100" onClick={()=>navigate(`/anime/${AnimeDataByID.mal_id}/opening`)}>Watch opening</button>
                                         </div>
                                     </div>
                                 </div>

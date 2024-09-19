@@ -44,7 +44,7 @@ export default function AnimeOpeningPage() {
     return (
         <div className='container-fluid OpeningPage container-fluid p-0 m-0'>
             <Navbar />
-            <div className={`container-fluid p-auto m-0 rounded w-100 d-flex flex-column align-items-center ${DeviceType === 'desktop'?'justify-content-center':''}`} style={{height:'90vh',backgroundColor:`rgba(0,0,0,${OpacityValue}`,transition:'0.5s'}}>
+            <div className={`container-fluid p-auto m-0 rounded w-100 d-flex flex-column align-items-center justify-content-center`} style={{height:'90vh',backgroundColor:`rgba(0,0,0,${OpacityValue}`,transition:'0.5s'}}>
                 {OpeningLink ? <>
                  (
                     <VideoJS options={{
@@ -68,7 +68,7 @@ export default function AnimeOpeningPage() {
                 </>:
                 <div className='p-0 m-0 w-50 d-flex flex-column align-items-center justify-content-center rounded'>
                     <img src={MaitakeGuru} alt="" className='w-25 object-fit-cover rounded'/>
-                    <h3 className='text-light p-1'>Please wait a moment Onii Chan...</h3>
+                    <h3 className='text-light p-1 text-center'>Please wait a moment Onii Chan...</h3>
                 </div>
             }
                 {/* <p>{OpeningLink?OpeningLink:'loading'}</p> */}
