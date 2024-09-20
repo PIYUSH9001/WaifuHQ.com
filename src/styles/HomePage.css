@@ -2,7 +2,7 @@
     background-image: url('../images/AnimeDetailsBackground.jpg');
     background-size:contain;
     -webkit-background-size:cover;
-    height:100vh;
+    min-height:100vh;
     display: flex;
     flex-direction: column;
 }
