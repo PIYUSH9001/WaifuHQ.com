@@ -32,15 +32,17 @@ export default function AnimeOpeningPage() {
     };
     useEffect(()=>{
         GetOpeningLink();
+        const img = new Image();
+        img.src = '../videos/MaitakeMaitakeGuruGuru.gif';
     },[])
     useEffect(()=>{
         if(OpacityValue === 0){
             setOpacityValue(0.5);
         }
     },[OpeningLink])
-    useEffect(()=>{
-        console.log(OpeningLink);
-    },[]);
+    // useEffect(()=>{
+    //     console.log(OpeningLink);
+    // },[]);
     return (
         <div className='container-fluid OpeningPage container-fluid p-0 m-0'>
             <Navbar />
@@ -67,7 +69,7 @@ export default function AnimeOpeningPage() {
                 )
                 </>:
                 <div className='p-0 m-0 w-50 d-flex flex-column align-items-center justify-content-center rounded'>
-                    <img src={MaitakeGuru} alt="" className='w-25 object-fit-cover rounded'/>
+                    <img src={MaitakeGuru} alt="" className={`w-${DeviceType === 'desktop'?25:50} object-fit-cover rounded`}/>
                     <h3 className='text-light p-1 text-center'>Please wait a moment Onii Chan...</h3>
                 </div>
             }
