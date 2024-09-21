@@ -83,7 +83,7 @@ export default function AnimeList({ Genre = null, Title, Search = null, Popular 
       {DeviceType === 'desktop' && (
         <>
           <Navbar />
-          <div className='container-fluid m-0 p-1 AnimeListContainer' style={{ height: AnimeData ? 'auto' : '100vh' }}>
+          <div className='container-fluid m-0 p-1 AnimeListContainer' style={{ height: AnimeData ? 'auto' : '100vh',}}>
             <h2 className='text-center text-light ListHeading p-3'>{CapitalizeWord(Title)}</h2>
             <div className='container-fluid p-1 m-0 row rounded ' style={{width:'auto'}}>
               {

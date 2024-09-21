@@ -1,7 +1,8 @@
 .AnimeListContainer{
-    width: 100vw;
     background-image: url('../images/AnimeDetailsBackground.jpg');
     background-size:contain;
+    width: 100vw;
+    min-height: 100vh;
     overflow-x: scroll;
 }
 

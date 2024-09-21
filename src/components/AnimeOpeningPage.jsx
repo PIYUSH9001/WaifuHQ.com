@@ -16,7 +16,8 @@ export default function AnimeOpeningPage() {
         try{
             const res = await fetch(`https://api.animethemes.moe/anime?filter[has]=resources&filter[site]=MyAnimeList&filter[external_id]=${AnimeID}&include=animethemes.animethemeentries.videos`);
             const parsedData = await res.json();
-            setOpeningLink(parsedData.anime[0].animethemes[0].animethemeentries[0].videos[0].link);
+            const openingTheme = parsedData.anime[0].animethemes.find(theme => theme.type === 'OP');
+            setOpeningLink(openingTheme?.animethemeentries[0]?.videos[0]?.link);
         }
         catch(error){
             console.log(error)
@@ -40,9 +41,9 @@ export default function AnimeOpeningPage() {
             setOpacityValue(0.5);
         }
     },[OpeningLink])
-    // useEffect(()=>{
-    //     console.log(OpeningLink);
-    // },[]);
+    useEffect(()=>{
+        console.log(OpeningLink);
+    },[OpeningLink]);
     return (
         <div className='container-fluid OpeningPage container-fluid p-0 m-0'>
             <Navbar />

@@ -1,6 +1,6 @@
 .OpeningPage{
     background-image: url('../images/AnimeDetailsBackground2.jpg');
     background-size:auto;
-    height:100vh;
+    min-height:100vh;
     width: 100vw;
 }
