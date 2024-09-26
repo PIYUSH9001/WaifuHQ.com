@@ -8,8 +8,16 @@
     color:white;
 }
 .card p{
-    font-weight: bold;
+    font-weight:600;
+    text-shadow: 1px 1px black;
 }
 a{
     text-decoration: none;
+}
+.ShowItemBG{
+    background-image: url('../images/ShowItemBackground2.jpg');
+    background-size: cover;
+}
+.ShowItemSpan{
+    background-color: rgba(0, 0, 0, 0.5);
 }

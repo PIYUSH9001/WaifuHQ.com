@@ -16,37 +16,37 @@ export default function AnimePage() {
     const { AnimeID } = useParams();
     const [AnimeDataByID, setAnimeDataByID] = useState(null);
     const { DeviceType } = useContext(AnimeContext);
-    const [IsImageHovered,setIsImageHovered] = useState(false)
+    const [IsImageHovered, setIsImageHovered] = useState(false)
     const navigate = useNavigate();
     function toCamelCase(str) {
         // Remove special characters and split the string into words
         const words = str.replace(/[^a-zA-Z0-9\s]/g, ' ').trim().split(/\s+/);
-      
+
         return words.map((word, index) => {
-          // Replace "season" with "S" and handle the following number if present
-          if (word.toLowerCase() === 'season') {
-            return 'S';
-          }
-      
-          // Convert "a" in specific cases like "date a live"
-          if (word.toLowerCase() === 'a' && index > 0) {
-            return 'A';
-          }
-      
-          // Keep numbers as is, especially for things like "S2"
-          if (!isNaN(word)) {
-            return word;
-          }
-      
-          // For the first word, keep it lowercase
-          if (index === 0) {
-            return word.toLowerCase();
-          }
-      
-          // For subsequent words, capitalize the first letter
-          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            // Replace "season" with "S" and handle the following number if present
+            if (word.toLowerCase() === 'season') {
+                return 'S';
+            }
+
+            // Convert "a" in specific cases like "date a live"
+            if (word.toLowerCase() === 'a' && index > 0) {
+                return 'A';
+            }
+
+            // Keep numbers as is, especially for things like "S2"
+            if (!isNaN(word)) {
+                return word;
+            }
+
+            // For the first word, keep it lowercase
+            if (index === 0) {
+                return word.toLowerCase();
+            }
+
+            // For subsequent words, capitalize the first letter
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         }).join('');
-      }
+    }
     // const changePlayerOptions = () => {
     //     // you can update the player through the Video.js player instance
     //     if (!playerRef.current) {
@@ -97,7 +97,7 @@ export default function AnimePage() {
                             </div>
                             </div> */}
 
-                            
+
 
                             <div className="card mb-3">
                                 <div className="row g-0">
@@ -111,7 +111,7 @@ export default function AnimePage() {
                                             <Link to={`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`}>
                                                 <button type="button" className="btn btn-light m-1 btn-lg w-100">Watch trailer</button>
                                             </Link>
-                                            <button type="button" class="button" className="btn btn-success m-1 btn-lg w-100" onClick={()=>navigate(`/anime/${AnimeDataByID.mal_id}/opening`)}>Watch opening</button>
+                                            <button type="button" className="btn btn-success m-1 btn-lg w-100" onClick={() => navigate(`/anime/${AnimeDataByID.mal_id}/opening`)}>Watch opening</button>
                                         </div>
                                     </div>
                                 </div>
@@ -131,25 +131,25 @@ export default function AnimePage() {
                         AnimeDataByID ? <div style={{ backgroundColor: 'rgb(0,0,0,0.5)' }}>
                             <Navbar />
                             <div className="container-fluid m-0 p-1 w-100 d-flex align items-center justify-content-center" >
-                                <img src={AnimeDataByID.images.jpg.large_image_url} className="img-fluid AnimeIMG w-25 rounded m-1" alt="..." style={{opacity:IsImageHovered?'0.75':'1',transition:'0.3s',cursor:'pointer',border:'2px solid white'}}
-                                onMouseOver={()=>setIsImageHovered(true)}
-                                onMouseOut={()=>setIsImageHovered(false)}
+                                <img src={AnimeDataByID.images.jpg.large_image_url} className="img-fluid AnimeIMG w-25 rounded m-1" alt="..." style={{ opacity: IsImageHovered ? '0.75' : '1', transition: '0.3s', cursor: 'pointer', border: '2px solid white' }}
+                                    onMouseOver={() => setIsImageHovered(true)}
+                                    onMouseOut={() => setIsImageHovered(false)}
                                 />
                                 <div className='container p-2 m-1 d-flex align items-center justify-content-center flex-column w-100'>
                                     <h5 className="AnimeTitle text-center text-light">{AnimeDataByID.title_english || AnimeDataByID.title}</h5>
                                     <p className="AnimeText text-center p-1 text-light">{AnimeDataByID.synopsis}</p>
                                     <div className='d-flex align-items-center justify-content-around flex-row w-100'>
-                                    <button type="button" class="btn btn-outline-primary w-25 mx-auto btn-lg text-light" onClick={()=>navigate(`/anime/${AnimeDataByID.mal_id}/opening`)}>Watch opening</button>
-                                    <button type="button" class="btn btn-outline-success w-25 mx-auto btn-lg text-light" onClick={()=>{
-                                        navigate(`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`)
-                                    }}>Watch trailer</button>
-                                    <button type="button" class="btn btn-outline-light w-25 mx-auto btn-lg">Add to playlist</button>
+                                        <button type="button" className="btn btn-outline-primary w-25 mx-auto btn-lg text-light DesktopBtn" onClick={() => navigate(`/anime/${AnimeDataByID.mal_id}/opening`)}>Watch opening</button>
+                                        <button type="button" className="btn btn-outline-success w-25 mx-auto btn-lg text-light DesktopBtn" onClick={() => {
+                                            navigate(`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`)
+                                        }}>Watch trailer</button>
+                                        <button type="button" className="btn btn-outline-light w-25 mx-auto btn-lg">Add to playlist</button>
 
                                     </div>
                                 </div>
                             </div>
                             <CharacterList AnimeID={AnimeDataByID.mal_id} />
-                            <TrendingShows AnimeID={AnimeDataByID.mal_id} Parameter={'anime-recommended'} Title={'More shows like this'}/>
+                            <TrendingShows AnimeID={AnimeDataByID.mal_id} Parameter={'anime-recommended'} Title={'More shows like this'} />
                             <Footer />
                         </div>
                             :

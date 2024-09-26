@@ -57,6 +57,12 @@ export default function TrendingShows(props) {
   useEffect(() => {
     FetchData(props.Parameter);
   }, [props.Parameter])
+  useEffect(()=>{
+    const img1 = new Image();
+    const img2 = new Image();
+    img1.src = '../images/RightScrollIcon.png';
+    img2.src = '../images/LeftArrowIcon.png';
+  },[]);
   // useEffect(()=>{
   //   console.log(AnimeData.length);
   // },[AnimeData])

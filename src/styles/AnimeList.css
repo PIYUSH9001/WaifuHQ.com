@@ -3,7 +3,7 @@
     background-size:contain;
     width: 100vw;
     min-height: 100vh;
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 
 /* .ListHeading{
@@ -23,7 +23,12 @@
 .PaginationBtn{
     width: 35%;
 }
-
+/* .AnimeDesktopContainer{
+    min-height: 100vh;
+    background-image: url('../images/AnimeDetailsBackground.jpg');
+    background-size:contain;
+    overflow-x: hidden;
+} */
 @media (min-width:1024px) {
     .PaginationContainer{
         border:2px solid white;

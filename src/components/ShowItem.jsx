@@ -38,7 +38,7 @@ export default function ShowItem(props) {
                     </Link>
                     :
                     <Link to={`/anime/${props.AnimeID}`} ref={ItemRef}>
-                        <div className="card rounded m-2 border-2 border-light d-flex flex-row" style={{
+                        <div className={`card rounded m-${props.ShowEffect?'2':'0'} border-2 border-light d-flex flex-row`} style={{
                             height: '16rem', width: IsHovered ? '20rem' : '10rem', backgroundSize: 'cover', transition: '0.5s',
                             backgroundImage: props.Thumbnail && `url(${AlternativeImage}`, 
                             zIndex: IsHovered ? '1' : '0', transform: IsHovered ? 'scale(1.05)' : 'scale(1)',
@@ -96,20 +96,22 @@ export default function ShowItem(props) {
                                     }
                                 </h5>
                             </div>
-                            <div className='container p-1 bg-dark d-flex align-items-center justify-content-center flex-column' style={{
+                            <div className='container p-0 ShowItemBG ' style={{
                                 transition: '0.35s',
                                 visibility: IsHovered ? 'visible' : 'hidden',
                                 opacity: IsHovered ? '1' : '0',
                             }}>
+                                <span className='p-0 m-1 d-flex align-items-center justify-content-center flex-column ShowItemSpan'>
                                 <h3 className='p-0 text-center' style={{
                                     height: '3rem',
                                     width: '9.5rem',
                                     fontSize: '1.2rem'
                                 }}>{(props.AnimeTitle.length > 20) ? `${props.AnimeTitle.slice(0, 20)}...` : `${props.AnimeTitle.slice(0, 20)}`}</h3>
-                                <p className='p-1 text-center' style={{ height: '8rem', width: '100%', overflowX: 'scroll', fontSize: '0.9rem' }}>
-                                    {props.Synopsis}
+                                <p className='p-1 text-center' style={{ height: '8rem', width: '100%', overflowX: 'scroll', fontSize: '0.85rem' }}>
+                                    {props.Synopsis?props.Synopsis:'Synopsis unavailable'}
                                 </p>
-                                <button type="button" className="btn btn-outline-light ">Watch now</button>
+                                <button type="button" className="btn btn-outline-light m-1">Watch now</button>
+                                    </span>
                             </div>
                         </div>
                     </Link>

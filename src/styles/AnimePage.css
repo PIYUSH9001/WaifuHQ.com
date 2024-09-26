@@ -17,3 +17,6 @@
 .card{
     background-color: rgba(0, 0, 0, 0.5);
 }
+.DesktopBtn{
+    text-shadow: 1px 1px black;
+}

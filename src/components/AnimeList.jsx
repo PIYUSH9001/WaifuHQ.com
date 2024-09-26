@@ -83,9 +83,9 @@ export default function AnimeList({ Genre = null, Title, Search = null, Popular 
       {DeviceType === 'desktop' && (
         <>
           <Navbar />
-          <div className='container-fluid m-0 p-1 AnimeListContainer' style={{ height: AnimeData ? 'auto' : '100vh',}}>
+          {/* <div className='container-fluid m-0 p-1 AnimeListContainer' style={{ height: AnimeData ? 'auto' : '100vh',}}>
             <h2 className='text-center text-light ListHeading p-3'>{CapitalizeWord(Title)}</h2>
-            <div className='container-fluid p-1 m-0 row rounded ' style={{width:'auto'}}>
+            <div className='container-fluid p-0 m-0 row rounded bg-danger' style={{width:'auto'}}>
               {
                 AnimeData ? (
                   <>
@@ -115,7 +115,40 @@ export default function AnimeList({ Genre = null, Title, Search = null, Popular 
               }}>Next</button>
             </div>
         }
+          </div> */}
+        <div className='container-fluid p-0 m-0 AnimeListContainer w-100'>
+          <h2 className='text-center text-light ListHeading p-3'>{CapitalizeWord(Title)}</h2>
+          <div className='row p-1 w-auto d-flex align-items-center justify-content-center'>
+          {
+                AnimeData ? (
+                  <>
+                    {AnimeData.map((element) => (
+                      <div className='col-6 col-md-3 col-lg-2 m-1 my-2 p-0 d-flex align-items-center justify-content-center' key={element.mal_id}>
+                        <ShowItem AnimeImageURL={element.images.jpg.large_image_url} AnimeTitle={element.title} AnimeID={element.mal_id} ShowEffect={false} Thumbnail={true}/>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <Loading FullPage={true} />
+                )
+              }
           </div>
+          {PaginationDetails && 
+            <div className='PaginationContainer container p-3 w-100'>
+              <button type="button" className="btn btn-light btn-lg PaginationBtn w-25" disabled={Pageno <= 1} onClick={() => {
+                if (Pageno > 1) {
+                  setPageno(Pageno - 1);
+                }
+              }}>Previous</button>
+              <h3 className='text-light'>{Pageno}</h3>
+              <button type="button" className="btn btn-success btn-lg PaginationBtn w-25" disabled={Pageno === PaginationDetails.last_visible_page} onClick={() => {
+                if (Pageno < PaginationDetails.last_visible_page) {
+                  setPageno(Pageno + 1);
+                }
+              }}>Next</button>
+            </div>
+        }
+        </div>
         </>
       )}
     </>
