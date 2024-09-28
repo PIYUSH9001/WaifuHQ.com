@@ -49,7 +49,7 @@ export const VideoJS = (props) => {
   return (
     <>
       <div data-vjs-player>
-        <div ref={videoRef} className="video-js vjs-theme-forest m-2 rounded vjs-big-play-centered" controls style={{ height: 'auto', width: '90vw' }} />
+        <div ref={videoRef} className="video-js vjs-theme-forest m-2 rounded" controls style={{ height: 'auto', width: '90vw' }} />
       </div>
     </>
   );
