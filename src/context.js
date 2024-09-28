@@ -6,6 +6,7 @@ const AnimeProvider = ({children}) =>{
     const [AnimeData,setAnimeData] = useState(null);
     const [SearchInput,setSearchInput] = useState('');
     const [DeviceType,setDeviceType] = useState(null);
+    const [VideoLink,setVideoLink] = useState(null);
     const CheckDevice = ()=>{
         let screenSize = window.innerWidth;
         if(screenSize < 768 ){
@@ -41,6 +42,8 @@ const AnimeProvider = ({children}) =>{
                 setSearchInput,
                 DeviceType,
                 CheckDevice,
+                VideoLink,
+                setVideoLink,
             }
             }>
             {children}

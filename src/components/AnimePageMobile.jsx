@@ -15,8 +15,24 @@ export default function AnimePage() {
     const location = useLocation();
     const { AnimeID } = useParams();
     const [AnimeDataByID, setAnimeDataByID] = useState(null);
-    const { DeviceType } = useContext(AnimeContext);
+    const { DeviceType, setVideoLink } = useContext(AnimeContext);
     const [IsImageHovered, setIsImageHovered] = useState(false)
+    const [AnimeSongsLinks,setAnimeSongsLinks] = useState(null);
+    const [OpeningLinks, setOpeningLinks] = useState(null);
+    const [EndingLinks,setEndingLinks] = useState(null);
+    const GetAnimeSongsLinks = async () => {
+        try {
+            const res = await fetch(`https://api.animethemes.moe/anime?filter[has]=resources&filter[site]=MyAnimeList&filter[external_id]=${AnimeID}&include=animethemes.animethemeentries.videos`);
+            const parsedData = await res.json();
+            const openingTheme = parsedData.anime[0].animethemes.filter(theme => theme.type === 'OP');
+            setAnimeSongsLinks(parsedData.anime[0].animethemes);
+            setOpeningLinks(parsedData.anime[0].animethemes.filter(theme => theme.type === 'OP'));
+            setEndingLinks(parsedData.anime[0].animethemes.filter(theme => theme.type === 'ED'));
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
     const navigate = useNavigate();
     function toCamelCase(str) {
         // Remove special characters and split the string into words
@@ -47,14 +63,6 @@ export default function AnimePage() {
             return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         }).join('');
     }
-    // const changePlayerOptions = () => {
-    //     // you can update the player through the Video.js player instance
-    //     if (!playerRef.current) {
-    //         return;
-    //     }
-    //     // [update player through instance's api]
-    //     playerRef.current.src([{ src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' }]);
-    // };
     const getAnimeDataByID = async () => {
         try {
             const response = await fetch(`https://api.jikan.moe/v4/anime/${AnimeID}`);
@@ -75,6 +83,15 @@ export default function AnimePage() {
             setAnimeDataByID(null);
         }
     }, [location]);
+    useEffect(() => {
+        GetAnimeSongsLinks();
+        // return ()=>{
+        //     setAnimeSongsLinks(null)
+        // }
+    }, [])
+    useEffect(() => {
+        console.log(AnimeSongsLinks);
+    }, [AnimeSongsLinks])
     return (
         <>
             {DeviceType === 'mobile' &&
@@ -82,36 +99,81 @@ export default function AnimePage() {
                     {
                         AnimeDataByID ? <div style={{ backgroundColor: 'rgb(0,0,0,0.5)' }}>
                             <Navbar />
-                            {/* <div className="card border-0 rounded-0" >
-                        <img src={AnimeDataByID.images.jpg.large_image_url} className="card-img rounded-0" alt="..." />
-                        <div className="card-img-overlay p-3 text-center rounded-0" style={{
-                            background: 'linear-gradient( rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 20%)',
-                            height: '40vh',
-                            top: '53.25vh'
-                            }}>
-                            <h5 className="card-title AnimeTitle p-1">{AnimeDataByID.title_english}</h5>
-                            <p className="card-text AnimeText p-1 m-1">{AnimeDataByID.synopsis}</p>
-                            <Link to={`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`}>
-                            <button type="button" className="btn btn-light my-3 btn-lg w-50">Watch trailer</button>
-                            </Link>
-                            </div>
-                            </div> */}
-
-
-
                             <div className="card mb-3">
                                 <div className="row g-0">
                                     <div className="col-5 d-flex align-items-center">
                                         <img src={AnimeDataByID.images.jpg.large_image_url} className="img-fluid AnimeIMG w-100 rounded m-1" alt="..." />
                                     </div>
                                     <div className="col-7">
-                                        <div className="card-body">
+                                        <div className="card-body d-flex align-items-center justify-content-center flex-column">
                                             <h5 className="AnimeTitle text-center">{AnimeDataByID.title_english || AnimeDataByID.title}</h5>
                                             <p className="AnimeText text-center p-1">{AnimeDataByID.synopsis}</p>
-                                            <Link to={`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`}>
+                                            {/* <Link to={`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`}>
                                                 <button type="button" className="btn btn-light m-1 btn-lg w-100">Watch trailer</button>
                                             </Link>
-                                            <button type="button" className="btn btn-success m-1 btn-lg w-100" onClick={() => navigate(`/anime/${AnimeDataByID.mal_id}/opening`)}>Watch opening</button>
+                                            <button type="button" className="btn btn-success m-1 btn-lg w-100" onClick={() => navigate(`/anime/${AnimeDataByID.mal_id}/opening`)}>Watch opening</button> */}
+                                            {
+                                            OpeningLinks ?
+                                                OpeningLinks.length < 2 ?
+                                                    <button type="button" className="btn btn-success w-100 mx-auto my-1 btn-lg text-light DesktopBtn" onClick={() => {
+                                                        navigate(`/anime/${AnimeDataByID.mal_id}/opening`)
+                                                        setVideoLink(OpeningLinks[0].animethemeentries[0].videos[0].link)
+                                                    } 
+                                                }>Watch opening</button>
+                                                    :
+                                                    <>
+                                                        <div className="btn-group dropdown-center mx-auto" data-bs-theme="dark">
+                                                            <button type="button" className="btn btn-success dropdown-toggle my-1 btn-lg mx-auto" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                Watch opening
+                                                            </button>
+                                                            <ul className="dropdown-menu">
+                                                                {OpeningLinks.map((element) => {
+                                                                    return <li className="dropdown-item text-light text-center" onClick={() => {
+                                                                        navigate(`/anime/${AnimeDataByID.mal_id}/opening`);
+                                                                        setVideoLink(element.animethemeentries[0].videos[0].link
+                                                                        )
+                                                                    }} style={{ cursor: 'pointer' }}>Opening {element.sequence || '1'}</li>
+                                                                })}
+                                                            </ul>
+                                                        </div>
+                                                    </>
+                                                : <button type="button" className="btn btn-success w-100 mx-auto my-1 btn-lg">
+                                                    <div className="spinner-border text-light" role="status">
+                                                        <span className="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </button>
+                                        }
+                                        {
+                                            EndingLinks ?
+                                                EndingLinks.length < 2 ?
+                                                    <button type="button" className="btn btn-primary w-100 mx-auto btn-lg my-1 text-light DesktopBtn" onClick={() => {
+                                                        navigate(`/anime/${AnimeDataByID.mal_id}/opening`)
+                                                        setVideoLink(EndingLinks[0].animethemeentries[0].videos[0].link)
+                                                    } 
+                                                }>Watch ending</button>
+                                                    :
+                                                    <>
+                                                        <div className="btn-group dropdown-center mx-auto" data-bs-theme="dark">
+                                                            <button type="button" className="btn btn-primary dropdown-toggle btn-lg mx-auto my-1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                Watch ending
+                                                            </button>
+                                                            <ul className="dropdown-menu">
+                                                                {EndingLinks.map((element) => {
+                                                                    return <li className="dropdown-item text-light text-center" onClick={() => {
+                                                                        navigate(`/anime/${AnimeDataByID.mal_id}/opening`);
+                                                                        setVideoLink(element.animethemeentries[0].videos[0].link
+                                                                        )
+                                                                    }} style={{ cursor: 'pointer' }}>Ending {element.sequence || '1'}</li>
+                                                                })}
+                                                            </ul>
+                                                        </div>
+                                                    </>
+                                                : <button type="button" className="btn btn-primary w-100 mx-auto my-1 btn-lg">
+                                                    <div className="spinner-border text-light" role="status">
+                                                        <span className="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </button>
+                                        }
                                         </div>
                                     </div>
                                 </div>
@@ -139,12 +201,69 @@ export default function AnimePage() {
                                     <h5 className="AnimeTitle text-center text-light">{AnimeDataByID.title_english || AnimeDataByID.title}</h5>
                                     <p className="AnimeText text-center p-1 text-light">{AnimeDataByID.synopsis}</p>
                                     <div className='d-flex align-items-center justify-content-around flex-row w-100'>
-                                        <button type="button" className="btn btn-outline-primary w-25 mx-auto btn-lg text-light DesktopBtn" onClick={() => navigate(`/anime/${AnimeDataByID.mal_id}/opening`)}>Watch opening</button>
-                                        <button type="button" className="btn btn-outline-success w-25 mx-auto btn-lg text-light DesktopBtn" onClick={() => {
-                                            navigate(`/anime/${AnimeDataByID.mal_id}/${AnimeDataByID.trailer.youtube_id}`)
-                                        }}>Watch trailer</button>
+                                        {
+                                            OpeningLinks ?
+                                                OpeningLinks.length < 2 ?
+                                                    <button type="button" className="btn btn-success w-25 mx-auto btn-lg text-light DesktopBtn" onClick={() => {
+                                                        navigate(`/anime/${AnimeDataByID.mal_id}/opening`)
+                                                        setVideoLink(OpeningLinks[0].animethemeentries[0].videos[0].link)
+                                                    } 
+                                                }>Watch opening</button>
+                                                    :
+                                                    <>
+                                                        <div className="btn-group dropdown-center mx-auto" data-bs-theme="dark">
+                                                            <button type="button" className="btn btn-success dropdown-toggle btn-lg mx-auto" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                Watch opening
+                                                            </button>
+                                                            <ul className="dropdown-menu">
+                                                                {OpeningLinks.map((element) => {
+                                                                    return <li className="dropdown-item text-light text-center" onClick={() => {
+                                                                        navigate(`/anime/${AnimeDataByID.mal_id}/opening`);
+                                                                        setVideoLink(element.animethemeentries[0].videos[0].link
+                                                                        )
+                                                                    }} style={{ cursor: 'pointer' }}>Opening {element.sequence || '1'}</li>
+                                                                })}
+                                                            </ul>
+                                                        </div>
+                                                    </>
+                                                : <button type="button" className="btn btn-success w-25 mx-auto btn-lg">
+                                                    <div className="spinner-border text-light" role="status">
+                                                        <span className="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </button>
+                                        }
+                                        {
+                                            EndingLinks ?
+                                                EndingLinks.length < 2 ?
+                                                    <button type="button" className="btn btn-primary w-25 mx-auto btn-lg text-light DesktopBtn" onClick={() => {
+                                                        navigate(`/anime/${AnimeDataByID.mal_id}/opening`)
+                                                        setVideoLink(EndingLinks[0].animethemeentries[0].videos[0].link)
+                                                    } 
+                                                }>Watch ending</button>
+                                                    :
+                                                    <>
+                                                        <div className="btn-group dropdown-center mx-auto" data-bs-theme="dark">
+                                                            <button type="button" className="btn btn-primary dropdown-toggle btn-lg mx-auto" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                Watch ending
+                                                            </button>
+                                                            <ul className="dropdown-menu">
+                                                                {EndingLinks.map((element) => {
+                                                                    return <li className="dropdown-item text-light text-center" onClick={() => {
+                                                                        navigate(`/anime/${AnimeDataByID.mal_id}/opening`);
+                                                                        setVideoLink(element.animethemeentries[0].videos[0].link
+                                                                        )
+                                                                    }} style={{ cursor: 'pointer' }}>Ending {element.sequence || '1'}</li>
+                                                                })}
+                                                            </ul>
+                                                        </div>
+                                                    </>
+                                                : <button type="button" className="btn btn-primary w-25 mx-auto btn-lg">
+                                                    <div className="spinner-border text-light" role="status">
+                                                        <span className="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </button>
+                                        }
                                         <button type="button" className="btn btn-outline-light w-25 mx-auto btn-lg">Add to playlist</button>
-
                                     </div>
                                 </div>
                             </div>

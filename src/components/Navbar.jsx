@@ -34,19 +34,19 @@ export default function Navbar() {
             <li className="nav-item tex">
               <Link className="nav-link text-light" to="/anime/popular">Popular</Link>
             </li>
-            <li className="nav-item tex dropdown">
+            <li className="nav-item tex dropdown" data-bs-theme="dark">
               <Link className="nav-link dropdown-toggle text-light" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Categories
               </Link>
               <ul className="dropdown-menu bg-dark border border-light border-2 rounded p-2">
-                <li><Link className="dropdown-item text-center text-danger rounded" to="/shounen"><b>Shounen</b></Link></li>
-                <li><Link className="dropdown-item text-center text-danger rounded" to="/romance"><b>Romance</b></Link></li>
-                <li><Link className="dropdown-item text-center text-danger rounded" to="/shoujo"><b>Shoujo</b></Link></li>
-                <li><Link className="dropdown-item text-center text-danger rounded" to="/sol"><b>Slice of life</b></Link></li>
-                <li><Link className="dropdown-item text-center text-danger rounded" to="/isekai"><b>Isekai</b></Link></li>
-                <li><Link className="dropdown-item text-center text-danger rounded" to="/comedy"><b>Comedy</b></Link></li>
-                <li><Link className="dropdown-item text-center text-danger rounded" to="/psychology"><b>Psychological</b></Link></li>
-                <li><Link className="dropdown-item text-center text-danger rounded" to="/music"><b>Music</b></Link></li>
+                <li><Link className="dropdown-item text-center text-light rounded" to="/shounen">Shounen</Link></li>
+                <li><Link className="dropdown-item text-center text-light rounded" to="/romance">Romance</Link></li>
+                <li><Link className="dropdown-item text-center text-light rounded" to="/shoujo">Shoujo</Link></li>
+                <li><Link className="dropdown-item text-center text-light rounded" to="/sol">Slice of life</Link></li>
+                <li><Link className="dropdown-item text-center text-light rounded" to="/isekai">Isekai</Link></li>
+                <li><Link className="dropdown-item text-center text-light rounded" to="/comedy">Comedy</Link></li>
+                <li><Link className="dropdown-item text-center text-light rounded" to="/psychology">Psychological</Link></li>
+                <li><Link className="dropdown-item text-center text-light rounded" to="/music">Music</Link></li>
                 {/* <li><hr className="dropdown-divider"/></li>
             <li><a className="dropdown-item" to="/">Something else here</a></li> */}
               </ul>
